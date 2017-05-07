@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="editorial" class="com.grupoatrium.modelo.Editorial">
+		<constructor-arg name="nombre" value="Las Encinas"/>
+		<constructor-arg name="direccion" ref="direccion"/>
+		<constructor-arg name="nif" value="F-12231256"/>
+	</bean>
+	<bean id="direccion" class="com.grupoatrium.modelo.Direccion">
+		<constructor-arg name="calle" value="Calle de la Tortola"/>
+		<constructor-arg name="numero" value="17"/>
+		<constructor-arg name="poblacion" value="Arroyo de Valdeusera"/>
+		<constructor-arg name="cp" value="33753"/>
+		<constructor-arg name="provincia" value="La Cochabamba"/>
+	</bean>
+	<bean id="autor" class="com.grupoatrium.modelo.Autor">
+		<constructor-arg  value="Eleuterio Decimononico"/>
+		<constructor-arg  value="Colombiana"/>
+		<constructor-arg value="Premio Nobel de Literatura 2004"/>		
+	</bean>
+	<bean id="libro" class="com.grupoatrium.modelo.Libro"
+		init-method="initLibro" destroy-method="destroyLibro">
+		<constructor-arg  value="3344589134NE"/>
+		<constructor-arg  value="La efimera presencia de las palomas"/>
+		<constructor-arg>
+			<list value-type="com.grupoatrium.modelo.Autor">
+				<ref bean="autor" />
+		
+			</list>
+		</constructor-arg>
+		<constructor-arg ref="editorial"/>
+		<constructor-arg  value="2007"/>
+		<constructor-arg  value="14.99"/>
+		<constructor-arg  value="Un thriller psicologico con gran impacto en el hemisferio sur"/>
+	</bean>
+</beans>

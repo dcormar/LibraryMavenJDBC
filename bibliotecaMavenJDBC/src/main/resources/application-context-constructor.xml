@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="editorial" class="com.davidcortijo.modelo.Editorial">
+		<property name="nombre" value="Las Encinas"></property>
+		<property name="direccion" ref="direccion">
+		</property>
+		<property name="nif" value="F-12231256"></property>
+	</bean>
+	<bean id="direccion" class="com.davidcortijo.modelo.Direccion">
+		<constructor-arg value="Calle de la Tortola"/>
+		<constructor-arg value="17"/>
+		<constructor-arg value="Arroyo de Valdeusera"/>
+		<constructor-arg value="33753"/>
+		<constructor-arg value="La Cochabamba"/>
+	</bean>
+	<bean id="autor" class="com.davidcortijo.modelo.Autor">
+		<constructor-arg  value="Eleuterio Decimononico"/>
+		<constructor-arg  value="Colombiana"/>
+		<constructor-arg value="Premio Nobel de Literatura 2004"/>		
+	</bean>
+	<bean id="libro" class="com.davidcortijo.modelo.Libro">
+		<constructor-arg  value="3344589134NE"/>
+		<constructor-arg  value="La efimera presencia de las palomas"/>
+		<constructor-arg>
+			<list value-type="com.davidcortijo.modelo.Autor">
+				<ref bean="autor" />
+		
+			</list>
+		</constructor-arg>
+		<constructor-arg ref="editorial"/>
+		<constructor-arg  value="2007"/>
+		<constructor-arg  value="14.99"/>
+		<constructor-arg  value="Un thriller psicologico con gran impacto en el hemisferio sur"/>
+	</bean>
+</beans>

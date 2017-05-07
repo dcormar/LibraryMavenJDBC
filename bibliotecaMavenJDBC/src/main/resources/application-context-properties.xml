@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="editorial" class="com.davidcortijo.modelo.Editorial">
+		<property name="nombre" value="Las Encinas"></property>
+		<property name="direccion" ref="direccion">
+		</property>
+		<property name="nif" value="F-12231256"></property>
+	</bean>
+	<bean id="direccion" class="com.davidcortijo.modelo.Direccion">
+		<property name="calle" value="Calle de la Tortola"/>
+		<property name="numero" value="17"/>
+		<property name="poblacion" value="Arroyo de Valdeusera"/>
+		<property name="cp" value="33753"/>
+		<property name="provincia" value="La Cochabamba"/>
+	</bean>
+	<bean id="autor" class="com.davidcortijo.modelo.Autor">
+		<property name="nombre" value="Eleuterio Decimononico"/>
+		<property name="nacionalidad" value="Colombiana"/>
+		<property name="comentarios"
+			value="Premio Nobel de Literatura 2004"/>		
+	</bean>
+	<bean id="libro" class="com.davidcortijo.modelo.Libro">
+		<property name="isbn" value="3344589134NE"/>
+		<property name="titulo"
+			value="La efimera presencia de las palomas">
+		</property>
+		<property name="autores">
+			<list value-type="com.davidcortijo.modelo.Autor">
+				<ref bean="autor" />
+		
+			</list>
+		</property>
+		<property name="editorial" ref="editorial"></property>
+		<property name="publicacion" value="2007"></property>
+		<property name="precio" value="14.99"></property>
+		<property name="descripcion"
+			value="Un thriller psicologico con gran impacto en el hemisferio sur">
+		</property>
+	</bean>
+</beans>
