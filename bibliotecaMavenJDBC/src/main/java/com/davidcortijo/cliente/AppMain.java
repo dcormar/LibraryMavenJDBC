@@ -1,9 +1,13 @@
 package com.davidcortijo.cliente;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 //import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.davidcortijo.configuracion.SpringConfigurationInyec_EmbeddedDB;
 
 //import com.davidcortijo.configuracion.SpringConfigurationAuto;
 
@@ -13,9 +17,9 @@ import com.davidcortijo.negocio.impl.EditorialesDTO;
 public class AppMain {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-context-embeddedDB-DaoSupport.xml");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("application-context-embeddedDB-DaoSupport.xml");
 		//ConfigurableApplicationContext  para poder usar los metodos preDestroy, etc.
-		//ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(SpringConfigurationInyec.class);
+		ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(SpringConfigurationInyec_EmbeddedDB.class);
 
 		AutoresDTO autoresDto = (AutoresDTO) context.getBean("autoresDTO");
 		//autoresDto.consultarAutores();
