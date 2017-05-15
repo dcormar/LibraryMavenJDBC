@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.davidcortijo.modelo.Autor;
 
-public class AutoresDAO {
+public class AutoresDAO extends JdbcDaoSupport{
 		
 	/*private ConnectionMgr connectionMgr;
 
@@ -19,20 +20,20 @@ public class AutoresDAO {
 		this.connectionMgr = connectionMgr;
 	}*/
 	
-	private JdbcTemplate plantilla;
+	//private JdbcTemplate plantilla;
     private RowMapper<Autor> autorMapper;
 
     public List<Autor> mostrarTodos(){
-        return plantilla.query("select * from AUTORES", autorMapper);
+        return getJdbcTemplate().query("select * from AUTORES", autorMapper);
     }
 
-	public JdbcTemplate getPlantilla() {
-		return plantilla;
+	/*public JdbcTemplate getPlantilla() {
+		return getJdbcTemplate();
 	}
 
 	public void setPlantilla(JdbcTemplate plantilla) {
 		this.plantilla = plantilla;
-	}
+	}*/
 
 	public RowMapper<Autor> getAutorMapper() {
 		return autorMapper;
@@ -43,11 +44,11 @@ public class AutoresDAO {
 	}
 
 	public Autor consultarAutor(String nombre) {
-		return plantilla.queryForObject("select * from AUTORES where NOMBRE = ?",new Object[] {nombre}, autorMapper);
+		return getJdbcTemplate().queryForObject("select * from AUTORES where NOMBRE = ?",new Object[] {nombre}, autorMapper);
 	}
 
 	public void altaAutor(Autor autor) {
 		String sql = "insert into AUTORES values (?,?,?)";
-		plantilla.update(sql, autor.getNombre(), autor.getNacionalidad(), autor.getComentarios());
+		getJdbcTemplate().update(sql, autor.getNombre(), autor.getNacionalidad(), autor.getComentarios());
 	}
 }

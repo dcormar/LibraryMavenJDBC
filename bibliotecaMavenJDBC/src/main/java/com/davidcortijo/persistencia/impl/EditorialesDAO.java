@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.davidcortijo.modelo.Editorial;
 
 
-public class EditorialesDAO {
+public class EditorialesDAO extends JdbcDaoSupport {
 	
 	/*private ConnectionMgr connectionMgr;
 
@@ -20,20 +21,20 @@ public class EditorialesDAO {
 		this.connectionMgr = connectionMgr;
 	}*/
 	
-	private JdbcTemplate plantilla;
+	//private JdbcTemplate plantilla;
     private RowMapper<Editorial> editorialMapper;
 
     public List<Editorial> mostrarTodos(){
-        return plantilla.query("select * from EDITORIALES", editorialMapper);
+        return getJdbcTemplate().query("select * from EDITORIALES", editorialMapper);
     }
 
-	public JdbcTemplate getPlantilla() {
+	/*public JdbcTemplate getPlantilla() {
 		return plantilla;
 	}
 
 	public void setPlantilla(JdbcTemplate plantilla) {
 		this.plantilla = plantilla;
-	}
+	}*/
 
 	public RowMapper<Editorial> getEditorialMapper() {
 		return editorialMapper;
@@ -44,11 +45,11 @@ public class EditorialesDAO {
 	}
 
 	public Editorial consultarEditorial(String nif) {
-		return plantilla.queryForObject("select * from EDITORIALES where NIF = ?",new Object[] {nif}, editorialMapper);
+		return getJdbcTemplate().queryForObject("select * from EDITORIALES where NIF = ?",new Object[] {nif}, editorialMapper);
 	}
 
 	public void altaEditorial(Editorial editorial) {
 		String sql = "insert into EDITORIALES values (?,?,?)";
-		plantilla.update(sql, editorial.getNif(), editorial.getNombre(), editorial.getDireccion().getCalle());
+		getJdbcTemplate().update(sql, editorial.getNif(), editorial.getNombre(), editorial.getDireccion().getCalle());
 	}
 }

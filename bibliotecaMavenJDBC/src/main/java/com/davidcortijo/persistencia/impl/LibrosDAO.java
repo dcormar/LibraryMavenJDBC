@@ -1,6 +1,8 @@
 package com.davidcortijo.persistencia.impl;
 
-public class LibrosDAO {
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+public class LibrosDAO extends JdbcDaoSupport {
 	
 	private ConnectionMgr connectionMgr;
 
